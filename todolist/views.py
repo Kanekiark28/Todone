@@ -16,8 +16,12 @@ def index(request):
             Todo.save()
             return redirect("/")
 
-        if "taskDelete" in request.POST: 
-            if 
+        if "taskDelete" in request.POST: #check if there is a request to delete a file in todo
+            checkedlist = request.POST["checkedbox"] #checked todos to be deleted
+            for todo_id in checkedlist:
+                todo = TodoList.objects.get(id = int(todo_id)) #getting todo_id
+                todo.delete()
+    return render(request, "index.html", {"todos": todos, "categories": categories})
 
 
 
